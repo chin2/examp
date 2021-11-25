@@ -20,6 +20,8 @@ let a = [{
     { "name": "kitchen", "items": [{ "id": 1, "name": 'Chicken soup.', "price": 400, }] }]
 }]
 
+c
+
 
 export default function Home({ navigation, probs }) {
 
@@ -36,6 +38,10 @@ export default function Home({ navigation, probs }) {
                 <View style={{ marginTop: 20, marginLeft: 100 }}>
                     {user}
                 </View>
+
+
+
+
             </SafeAreaView>
         </KeyboardAwareScrollView>
     )
