@@ -18,7 +18,7 @@ import { FontAwesome } from '@expo/vector-icons';
 const Product = ((probs) => {
     // console.log(probs.getUser)
   const addtoWishlist=(()=>{
-      
+      alert(probs.val)
   })
     return (
         <View style={{}}>
@@ -52,7 +52,7 @@ const Product = ((probs) => {
 
     )
 })
-export default function Home({ navigation, probs }) {
+export default function Payment({ navigation, probs }) {
     const data=[['friedchicken',200,300],['chicken  risc',200,300],['beef  risc',200,300],['mutton  risc',200,300],['briyan',200,300]]
     const MCdata=[['cafe',20,13],['chocolate',20,18],['capp',9,3],['',200,300],['briyan',200,300]]
 
@@ -94,7 +94,7 @@ export default function Home({ navigation, probs }) {
                         <View style={{ flexDirection: 'row', marginTop: 30, justifyContent: 'space-around' }}>
 
                             {MCdata.map((e)=>{
-                                return (<Product val={e} />)
+                                return (<Product val={e}/>)
                             })}
 
                         </View>

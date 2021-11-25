@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, KeyboardAvoidingView, StatusBar, SafeAreaView, TextInput, TouchableOpacity, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, CheckBox, StatusBar, SafeAreaView, TextInput, TouchableOpacity, Dimensions } from 'react-native';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -10,6 +10,7 @@ import { aColor, bColor } from '../components/color';
 import firebase, { auth } from '../db/firebase';
 
 export default function Signup({ navigation }) {
+    const [isSelected, setSelection] = useState(false);
     const [Email, setEmail] = useState("")
     const [Password, setPassword] = useState("")
     const [Error, setError] = useState("")
@@ -33,7 +34,7 @@ export default function Signup({ navigation }) {
             setError("Enter Valid Email")
         }
         else {
-            if(Password[0]==1){
+            if (Password[0] == 1) {
                 alert("Must contain one Small Characters or single Characters")
             }
             try {
@@ -42,13 +43,13 @@ export default function Signup({ navigation }) {
                     .createUserWithEmailAndPassword(Email, Password);
                 alert('sucess,login to continue');
             } catch (error) {
-                alert('Error creating account'+error);
+                alert('Error creating account' + error);
             }
         }
     }
 
     return (
-        <KeyboardAwareScrollView style={{ backgroundColor: bColor,marginTop:20 }}>
+        <KeyboardAwareScrollView style={{ backgroundColor: bColor, marginTop: 20 }}>
             <SafeAreaView style={styles.container}>
                 <View
                 // style={{flex:1, justifyContent: 'space-around', height: windowHeight }}
@@ -70,6 +71,16 @@ export default function Signup({ navigation }) {
                             </View>
 
                             {Error == "" ? <Text></Text> : <Text style={{ color: 'red', alignContent: 'center', justifyContent: 'center' }}>{Error}</Text>}
+                        </View>
+                        <View style={styles.container}>
+                            <View style={styles.checkboxContainer}>
+                                <CheckBox
+                                    value={isSelected}
+                                    onValueChange={setSelection}
+                                    style={styles.checkbox}
+                                />
+                                <Text style={styles.label}>Are you eligable to Vote?</Text>
+                            </View>
                         </View>
                         <View style={styles.loginButtonView}>
                             <TouchableOpacity onPress={signUpValidate}>
@@ -97,6 +108,16 @@ const styles = StyleSheet.create({
         marginTop: StatusBar.currentHeight,
         marginHorizontal: (10 * windowWidth) / 100,
         backgroundColor: bColor
+    }, checkboxContainer: {
+        flexDirection: "row",
+        marginBottom: 20,
+    },
+    checkbox: {
+        alignSelf: "center",
+    },
+    label: {
+        margin: 8,
+        color:'white'
     },
     createHead: {
         fontSize: 25,
